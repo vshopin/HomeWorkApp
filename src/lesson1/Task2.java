@@ -5,7 +5,7 @@ public class Task2 {
         System.out.println(returnExpression(4, 6, 8, 10));
     }
 
-    static int returnExpression(int a, int b, int c, int d) {
+    private static int returnExpression(int a, int b, int c, int d) {
         return a * (b + (c / d));
     }
 }
