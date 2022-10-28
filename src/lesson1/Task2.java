@@ -14,6 +14,9 @@ public class Task2 {
         System.out.println(returnExpression(num1, num2, num3, num4));
     }
     private static int returnExpression(int a, int b, int c, int d) {
+        if (d == 0) {
+            return 0;
+        }
         return a * (b + (c / d));
     }
 }
