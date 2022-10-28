@@ -13,7 +13,7 @@ public class Task2 {
         int num4 = scanner.nextInt();
         System.out.println(returnExpression(num1, num2, num3, num4));
     }
-    private static int returnExpression(int a, int b, int c, int d) {
+    private static double returnExpression(int a, int b, int c, int d) {
         if (d == 0) {
             return 0;
         }
