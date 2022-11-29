@@ -30,7 +30,7 @@ public class ticTacToe {
     }
 
     private static void playGame() {
-        while (true){
+        while (true) {
             humanTurn();
             printMap();
             if (checkWin(DOT_X)) {
@@ -68,21 +68,41 @@ public class ticTacToe {
         return true;
     }
 
-    // метод проверки победы
-    private static boolean checkWin(char symbol) {
-        if (map[0][0] == symbol && map[0][1] == symbol && map[0][2] == symbol) return true;
-        if (map[1][0] == symbol && map[1][1] == symbol && map[1][2] == symbol) return true;
-        if (map[2][0] == symbol && map[2][1] == symbol && map[2][2] == symbol) return true;
+    private static boolean checkLanes(char symbol) {
+        boolean cols, rows;
+        for (int col = 0; col < SIZE; col++) {
+            cols = true;
+            rows = true;
+            for (int row = 0; row < SIZE; row++) {
+                cols &= (map[col][row] == symbol);
+                rows &= (map[row][col] == symbol);
+            }
 
-        if (map[0][0] == symbol && map[1][0] == symbol && map[2][0] == symbol) return true;
-        if (map[0][1] == symbol && map[1][1] == symbol && map[2][1] == symbol) return true;
-        if (map[0][2] == symbol && map[1][2] == symbol && map[2][2] == symbol) return true;
-
-        if (map[0][0] == symbol && map[1][1] == symbol && map[2][2] == symbol) return true;
-        //noinspection RedundantIfStatement
-        if (map[0][2] == symbol && map[1][1] == symbol && map[2][0] == symbol) return true;
+            // Это условие после каждой проверки колонки и столбца
+            // позволяет остановить дальнейшее выполнение, без проверки
+            // всех остальных столбцов и строк.
+            if (cols || rows) return true;
+        }
 
         return false;
+    }
+
+    private static boolean checkDiagonal(char symbol) {
+        boolean toright, toleft;
+        toright = true;
+        toleft = true;
+        for (int i = 0; i < SIZE; i++) {
+            toright &= (map[i][i] == symbol);
+            toleft &= (map[SIZE - i - 1][i] == symbol);
+        }
+
+        return toright || toleft;
+    }
+
+    // метод проверки победы
+    private static boolean checkWin(char symbol) {
+
+        return checkLanes(symbol) || checkDiagonal(symbol);
     }
 
     // метод хода компьютера
@@ -97,17 +117,17 @@ public class ticTacToe {
     }
 
     // метод хода игрока человека
-    private static void humanTurn(){
+    private static void humanTurn() {
         int rowIndex = -1, colIndex = -1;
         do {
             System.out.println("Введите координаты в формате <номер строки> <номер колонки>");
             String[] StringData = scanner.nextLine().split(" ");
-            if (StringData.length !=2) {
+            if (StringData.length != 2) {
                 continue;
             }
             try {
                 rowIndex = Integer.parseInt(StringData[0]) - 1;
-                colIndex = Integer.parseInt(StringData[1] )- 1;
+                colIndex = Integer.parseInt(StringData[1]) - 1;
             } catch (NumberFormatException e) {
                 System.out.println("Были введены не корректные данные!");
             }
