@@ -19,8 +19,9 @@ public class Person {
         this.salary = salary;
         this.age = age;
     }
+
     public void getInfoPerson() {
-        System.out.println(this.firstName + "; " + this.lastName+ "; " + this.position + "; " + this.email + "; " + this.phone + "; " + this.salary + "; " + this.age);
+        System.out.println(this.firstName + "; " + this.lastName + "; " + this.position + "; " + this.email + "; " + this.phone + "; " + this.salary + "; " + this.age);
     }
 
 }
