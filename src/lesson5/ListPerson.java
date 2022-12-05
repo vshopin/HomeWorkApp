@@ -9,9 +9,9 @@ public class ListPerson {
         personArray[3] = new Person("Dima", "Medvedev", "Devops", "medvedev@gmail.com", "79130000105", 150000, 35);
         personArray[4] = new Person("Igor", "Zemlin", "QA", "zemlin@gmail.com", "79130000106", 30000, 25);
 
-        for (int i = 0; i < personArray.length; i++) {
-            if (personArray[i].age >= 40) {
-                personArray[i].getInfoPerson();
+        for (Person person : personArray) {
+            if (person.age >= 40) {
+                person.getInfoPerson();
             }
         }
     }
